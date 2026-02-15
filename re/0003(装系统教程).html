@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>装系统教程 - ZYH Tech Team</title>
+    <link rel="icon" href="../img/zyh-logo.ico" type="image/x-icon">
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',    // 蓝色
+                        secondary: '#10B981',  // 绿色
+                        accent: '#F59E0B',     // 橙色
+                        dark: '#1F2937',       // 深灰
+                        light: '#F9FAFB',      // 浅灰白
+                        border: '#D1D5DB',     // 中灰
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'pixel': '4px 4px 0px 0px rgba(0, 0, 0, 0.8)',
+                        'pixel-sm': '2px 2px 0px 0px rgba(0, 0, 0, 0.8)',
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 2s infinite',
+                        'pulse-slow': 'pulse 3s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .pixel-borders {
+                box-shadow: 
+                    -4px 0 0 0 theme('colors.dark'),
+                    4px 0 0 0 theme('colors.dark'),
+                    0 -4px 0 0 theme('colors.dark'),
+                    0 4px 0 0 theme('colors.dark');
+            }
+            
+            .pixel-borders-sm {
+                box-shadow: 
+                    -2px 0 0 0 theme('colors.dark'),
+                    2px 0 0 0 theme('colors.dark'),
+                    0 -2px 0 0 theme('colors.dark'),
+                    0 2px 0 0 theme('colors.dark');
+            }
+            
+            .pixel-btn {
+                @apply relative px-4 py-2 bg-primary text-white text-sm 
+                       transform transition-transform active:translate-x-[2px] active:translate-y-[2px]
+                       active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] shadow-pixel;
+            }
+            
+            .pixel-btn-secondary {
+                @apply relative px-4 py-2 bg-secondary text-white text-sm 
+                       transform transition-transform active:translate-x-[2px] active:translate-y-[2px]
+                       active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] shadow-pixel;
+            }
+            
+            .pixel-btn-accent {
+                @apply relative px-4 py-2 bg-accent text-white text-sm 
+                       transform transition-transform active:translate-x-[2px] active:translate-y-[2px]
+                       active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] shadow-pixel;
+            }
+            
+            .pixel-input {
+                @apply border-4 border-dark bg-white px-3 py-2 text-dark 
+                       focus:outline-none focus:ring-2 focus:ring-primary;
+            }
+            
+            .pixel-card {
+                @apply bg-white border-4 border-dark p-4 shadow-pixel;
+            }
+            
+            /* 教程内容样式 */
+            .tutorial-content {
+                @apply max-w-3xl mx-auto;
+            }
+            
+            .tutorial-content h1 {
+                @apply text-2xl font-bold mb-6 text-primary;
+            }
+            
+            .tutorial-content h2 {
+                @apply text-xl font-bold mb-4 text-primary;
+            }
+            
+            .tutorial-content h3 {
+                @apply text-lg font-bold mb-3 text-primary;
+            }
+            
+            .tutorial-content p {
+                @apply mb-4;
+            }
+            
+            .tutorial-content ul {
+                @apply mb-4 pl-5 list-disc;
+            }
+            
+            .tutorial-content li {
+                @apply mb-2;
+            }
+            
+            .tutorial-content a {
+                @apply text-primary hover:underline;
+            }
+            
+            .tutorial-content code {
+                @apply bg-gray-100 px-1 py-0.5 rounded text-sm;
+            }
+            
+            .tutorial-content pre {
+                @apply bg-gray-100 p-3 rounded mb-4 overflow-x-auto;
+            }
+            
+            .tutorial-content pre code {
+                @apply bg-transparent p-0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-light text-dark overflow-x-hidden">
+    <!-- 顶部导航栏 -->
+    <header class="bg-white border-b-4 border-dark sticky top-0 z-20">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center">
+                <!-- 团队Logo位置 -->
+                <div class="flex items-center">
+                    <div id="team-logo" class="w-10 h-10 mr-3 pixel-borders-sm flex items-center justify-center">
+                        <img src="../img/zyh-logo.png" alt="ZYH Logo" class="w-full h-full object-contain">
+                    </div>
+                    <h1 class="text-xl font-bold">ZYH 科技团队</h1>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button id="back-to-home" class="pixel-btn flex items-center">
+                    <i class="fa fa-home mr-2"></i> 返回主页
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 主内容区 -->
+    <main class="min-h-screen">
+        <div class="container mx-auto px-4 py-8">
+            <!-- 装系统教程内容区域 -->
+            <section id="tutorial-content" class="mb-16">
+                <div class="pixel-card">
+                    <div class="tutorial-content">
+                        <h1 class="text-center mb-8">装系统教程</h1>
+                        
+                        <div class="mb-8 p-4 bg-yellow-50 border-2 border-yellow-300 rounded">
+                            <h2>开篇提示</h2>
+                            <ul>
+                                <li>文章的所有软件链接都已经贴到了文章末尾，别在网上搜!!!</li>
+                                <li>软件建议保存到电脑里</li>
+                            </ul>
+                        </div>
+                        
+                        <h2>前篇</h2>
+                        
+                        <h3>BIOS启动(老电脑):</h3>
+                        <ul>
+                            <li>用Ventoy，你会回来感谢我的。</li>
+                            <li>如果只用linux系统的话，BalenaEtcher也是不错的选择，不过经常报错。</li>
+                            <li>其他的不介绍</li>
+                            <li>文章的‘烧录’部分会统一介绍Ventoy用法!!!</li>
+                        </ul>
+                        
+                        <h3>UEFI启动(较新的电脑)</h3>
+                        <ul>
+                            <li>UEFI用Ventoy稍微困难一点。</li>
+                            <li>如果只用linux系统的话，BalenaEtcher也是不错的选择，不过经常报错。</li>
+                            <li>其他的不介绍</li>
+                            <li>文章的‘烧录’部分会统一介绍Ventoy用法!!!</li>
+                        </ul>
+                        
+                        <h2>镜像</h2>
+                        <ul>
+                            <li>下载器推荐BitComet，一个字：快！</li>
+                            <li>镜像网站：Windows推荐用： <a href="https://next.itellyou.cn/" target="_blank">https://next.itellyou.cn/</a></li>
+                            <li>Linux找镜像网站（这里的链接是清华源）或者官网，推荐下面几个系统：</li>
+                            <li>UBUNTU： <a href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/" target="_blank">https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/</a></li>
+                            <li>DEBIAN： <a href="https://mirrors.tuna.tsinghua.edu.cn/debian-cd/" target="_blank">https://mirrors.tuna.tsinghua.edu.cn/debian-cd/</a></li>
+                            <li>DEEPIN： <a href="https://mirrors.tuna.tsinghua.edu.cn/deepin-cd/" target="_blank">https://mirrors.tuna.tsinghua.edu.cn/deepin-cd/</a></li>
+                            <li>下载的镜像一般是.iso格式</li>
+                        </ul>
+                        
+                        <h2>烧录</h2>
+                        <p class="font-bold">最最最重要的一步，千万仔细！！！统一以Ventoy为例</p>
+                        <ul>
+                            <li>首先打开Ventoy2Disk.exe，插入你的U盘（8G或以上），然后点击‘配置选项’，如果你用UEFI把‘安全启动支持’的对勾勾上！！！<span class="text-red-500 font-bold">（BIOS请忽略这步）</span></li>
+                            <li>完成后点击‘安装’</li>
+                            <li><span class="text-red-500 font-bold">Tips:U盘里有重要文件的先备份，这步是格式化！！！</span></li>
+                        </ul>
+                        
+                        <!-- Ventoy安装步骤图片 -->
+                        <div class="mt-6 mb-6">
+                            <h3>Ventoy安装步骤</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="pixel-card">
+                                    <img src="../res/装系统教程/p1.png" alt="Ventoy配置选项" class="w-full h-auto">
+                                    <p class="text-xs mt-2 text-center">图1: Ventoy配置选项</p>
+                                </div>
+                                <div class="pixel-card">
+                                    <img src="../res/装系统教程/p2.png" alt="Ventoy安装" class="w-full h-auto">
+                                    <p class="text-xs mt-2 text-center">图2: Ventoy安装</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <ul>
+                            <li>等进度条跑完后打开你的U盘，放入系统镜像(.iso)</li>
+                            <li>关机，不同主板进系统选择界面的方式不同，基本在F11，F12和Delete之间，每个键每次选一个按开机键后狂按，总会试到的。选择你的U盘后</li>
+                            <li>要是UEFI的话，你就会发现：进不了！解决方法<span class="text-red-500 font-bold">(BIOS请忽略这步)</span>。网图，若有侵权，请联系删除：</li>
+                        </ul>
+                        
+                        <!-- UEFI解决方法图片 -->
+                        <div class="mt-6 mb-6">
+                            <h3>UEFI启动解决方法</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="pixel-card">
+                                    <img src="../res/装系统教程/p3.png" alt="验证失败" class="w-full h-auto">
+                                    <p class="text-xs mt-2 text-center">图3: 验证失败，点击OK</p>
+                                </div>
+                                <div class="pixel-card">
+                                    <img src="../res/装系统教程/p4.png" alt="MOK管理" class="w-full h-auto">
+                                    <p class="text-xs mt-2 text-center">图4: 按任意键进入MOK管理</p>
+                                </div>
+                                <div class="pixel-card">
+                                    <img src="../res/装系统教程/p5.png" alt="选择EFI或VTOYEFI" class="w-full h-auto">
+                                    <p class="text-xs mt-2 text-center">图5: 选择EFI或VTOYEFI</p>
+                                </div>
+                                <div class="pixel-card">
+                                    <img src="../res/装系统教程/p6.png" alt="选择第二项（在硬盘选择）" class="w-full h-auto">
+                                    <p class="text-xs mt-2 text-center">图6: 选择第二项（在硬盘选择）</p>
+                                </div>
+                                <div class="pixel-card">
+                                    <img src="../res/装系统教程/p7.png" alt="选择Continue" class="w-full h-auto">
+                                    <p class="text-xs mt-2 text-center">图7: 选择Continue</p>
+                                </div>
+                                <div class="pixel-card">
+                                    <img src="../res/装系统教程/p8.png" alt="选择EFI密钥" class="w-full h-auto">
+                                    <p class="text-xs mt-2 text-center">图8: 选择EFI密钥</p>
+                                </div>
+                                <div class="pixel-card">
+                                    <img src="../res/装系统教程/p9.png" alt="选择Yes" class="w-full h-auto">
+                                    <p class="text-xs mt-2 text-center">图9: 选择Yes</p>
+                                </div>
+                                <div class="pixel-card">
+                                    <img src="../res/装系统教程/p10.png" alt="选择Reboot" class="w-full h-auto">
+                                    <p class="text-xs mt-2 text-center">图10: 选择Reboot</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <ul>
+                            <li>图片流程只需要一遍，以后就不用设置了</li>
+                            <li>进入Ventoy之后选择系统，按两下回车就可以了</li>
+                        </ul>
+                        
+                        <h2>BIOS</h2>
+                        <p>一样的步骤，关机后直接就可以进去了。</p>
+                        
+                        <div class="mt-8 p-4 bg-gray-50 border-2 border-gray-300 rounded">
+                            <h2>软件链接</h2>
+                            <ul>
+                                <li>@Ventoy烧录工具： <a href="https://www.ventoy.net/cn/download.html" target="_blank">https://www.ventoy.net/cn/download.html</a></li>
+                                <li>Bitcomet下载器： <a href="https://pan.huang1111.cn/s/4RKa3Tg" target="_blank">https://pan.huang1111.cn/s/4RKa3Tg</a>（提取码：zyh01）</li>
+                                <li>BalenaEtcher烧录器： <a href="https://pan.huang1111.cn/s/DVPwkf4" target="_blank">https://pan.huang1111.cn/s/A61vvCB</a>（提取码：zyh02）</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- 页脚 -->
+    <footer class="bg-white border-t-4 border-dark py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-xs text-gray-600 mb-4 md:mb-0">© 2025 ZYH科技团队. 保留所有权利。</p>
+                <div class="flex space-x-4 text-xs">
+                    <a href="../index.html#home" class="hover:text-primary transition-colors">首页</a>
+                    <a href="../index.html#tools" class="hover:text-primary transition-colors">工具</a>
+                    <a href="../index.html#about" class="hover:text-primary transition-colors">关于</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 返回主页按钮
+            document.getElementById('back-to-home').addEventListener('click', function() {
+                window.location.href = '../index.html';
+            });
+        });
+    </script>
+</body>
+</html>
