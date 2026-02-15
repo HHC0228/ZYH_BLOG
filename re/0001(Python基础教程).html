@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python基础教程 - ZYH Tech Team</title>
+    <link rel="icon" href="img/zyh-logo.ico" type="image/x-icon">
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+    <!-- DOMPurify for XSS prevention -->
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',    // 蓝色
+                        secondary: '#10B981',  // 绿色
+                        accent: '#F59E0B',     // 橙色
+                        dark: '#1F2937',       // 深灰
+                        light: '#F9FAFB',      // 浅灰白
+                        border: '#D1D5DB',     // 中灰
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'pixel': '4px 4px 0px 0px rgba(0, 0, 0, 0.8)',
+                        'pixel-sm': '2px 2px 0px 0px rgba(0, 0, 0, 0.8)',
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 2s infinite',
+                        'pulse-slow': 'pulse 3s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .pixel-borders {
+                box-shadow: 
+                    -4px 0 0 0 theme('colors.dark'),
+                    4px 0 0 0 theme('colors.dark'),
+                    0 -4px 0 0 theme('colors.dark'),
+                    0 4px 0 0 theme('colors.dark');
+            }
+            
+            .pixel-borders-sm {
+                box-shadow: 
+                    -2px 0 0 0 theme('colors.dark'),
+                    2px 0 0 0 theme('colors.dark'),
+                    0 -2px 0 0 theme('colors.dark'),
+                    0 2px 0 0 theme('colors.dark');
+            }
+            
+            .pixel-btn {
+                @apply relative px-4 py-2 bg-primary text-white text-sm 
+                       transform transition-transform active:translate-x-[2px] active:translate-y-[2px]
+                       active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] shadow-pixel;
+            }
+            
+            .pixel-btn-secondary {
+                @apply relative px-4 py-2 bg-secondary text-white text-sm 
+                       transform transition-transform active:translate-x-[2px] active:translate-y-[2px]
+                       active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] shadow-pixel;
+            }
+            
+            .pixel-btn-accent {
+                @apply relative px-4 py-2 bg-accent text-white text-sm 
+                       transform transition-transform active:translate-x-[2px] active:translate-y-[2px]
+                       active:shadow-[2px_2px_0px_0px_rgba(0,0,0,0.8)] shadow-pixel;
+            }
+            
+            .pixel-input {
+                @apply border-4 border-dark bg-white px-3 py-2 text-dark 
+                       focus:outline-none focus:ring-2 focus:ring-primary;
+            }
+            
+            .pixel-card {
+                @apply bg-white border-4 border-dark p-4 shadow-pixel;
+            }
+            
+            /* Markdown 样式 */
+            .markdown-content {
+                @apply max-w-3xl mx-auto;
+            }
+            
+            .markdown-content h1 {
+                @apply text-2xl font-bold mb-4 text-primary;
+            }
+            
+            .markdown-content h2 {
+                @apply text-xl font-bold mb-3 text-primary;
+            }
+            
+            .markdown-content h3 {
+                @apply text-lg font-bold mb-2 text-primary;
+            }
+            
+            .markdown-content p {
+                @apply mb-3;
+            }
+            
+            .markdown-content ul,
+            .markdown-content ol {
+                @apply mb-3 pl-5;
+            }
+            
+            .markdown-content ul {
+                @apply list-disc;
+            }
+            
+            .markdown-content ol {
+                @apply list-decimal;
+            }
+            
+            .markdown-content li {
+                @apply mb-1;
+            }
+            
+            .markdown-content code {
+                @apply bg-gray-100 px-1 py-0.5 rounded text-sm;
+            }
+            
+            .markdown-content pre {
+                @apply bg-gray-100 p-3 rounded mb-3 overflow-x-auto;
+            }
+            
+            .markdown-content pre code {
+                @apply bg-transparent p-0;
+            }
+            
+            .markdown-content a {
+                @apply text-primary hover:underline;
+            }
+            
+            .markdown-content img {
+                @apply max-w-full h-auto mb-3;
+            }
+        }
+    </style>
+</head>
+<body class="bg-light text-dark overflow-x-hidden">
+    <!-- 顶部导航栏 -->
+    <header class="bg-white border-b-4 border-dark sticky top-0 z-20">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center">
+                <!-- 团队Logo位置 -->
+                <div class="flex items-center">
+                    <div id="team-logo" class="w-10 h-10 mr-3 pixel-borders-sm flex items-center justify-center">
+                        <img src="img/zyh-logo.png" alt="ZYH Logo" class="w-full h-full object-contain">
+                    </div>
+                    <h1 class="text-xl font-bold">ZYH 科技团队</h1>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button id="back-to-home" class="pixel-btn flex items-center">
+                    <i class="fa fa-home mr-2"></i> 返回主页
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 主内容区 -->
+    <main class="min-h-screen">
+        <div class="container mx-auto px-4 py-8">
+            <!-- Markdown 内容区域 -->
+            <section id="markdown-content" class="mb-16">
+                <div class="pixel-card">
+                    <div id="loading-indicator" class="text-center py-16">
+                        <i class="fa fa-spinner fa-spin text-4xl text-primary"></i>
+                        <p class="mt-4">加载中...</p>
+                    </div>
+                    <div id="content-container" class="markdown-content hidden"></div>
+                    <div id="error-container" class="text-center py-16 hidden">
+                        <div class="text-red-500 mb-4"><i class="fa fa-exclamation-circle text-4xl"></i></div>
+                        <h2 class="text-xl mb-4">错误</h2>
+                        <p class="text-sm" id="error-message"></p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- 页脚 -->
+    <footer class="bg-white border-t-4 border-dark py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-xs text-gray-600 mb-4 md:mb-0">© 2025 ZYH科技团队. 保留所有权利。</p>
+                <div class="flex space-x-4 text-xs">
+                    <a href="index.html#home" class="hover:text-primary transition-colors">首页</a>
+                    <a href="index.html#tools" class="hover:text-primary transition-colors">工具</a>
+                    <a href="index.html#about" class="hover:text-primary transition-colors">关于</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 返回主页按钮
+            document.getElementById('back-to-home').addEventListener('click', function() {
+                window.location.href = '../index.html';
+            });
+            
+            // 渲染 Markdown 文件
+            function renderMarkdownFile() {
+                const filePath = '../res/python-basics.md';
+                const loadingIndicator = document.getElementById('loading-indicator');
+                const contentContainer = document.getElementById('content-container');
+                const errorContainer = document.getElementById('error-container');
+                const errorMessage = document.getElementById('error-message');
+                
+                // 显示加载指示器
+                loadingIndicator.classList.remove('hidden');
+                contentContainer.classList.add('hidden');
+                errorContainer.classList.add('hidden');
+                
+                // 获取并渲染 Markdown 内容
+                fetch(filePath)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('文件加载失败');
+                        }
+                        return response.text();
+                    })
+                    .then(markdownContent => {
+                        // 隐藏加载指示器，显示内容
+                        loadingIndicator.classList.add('hidden');
+                        contentContainer.classList.remove('hidden');
+                        
+                        // 渲染 Markdown
+                        const htmlContent = marked.parse(markdownContent);
+                        const sanitizedHtml = DOMPurify.sanitize(htmlContent);
+                        contentContainer.innerHTML = sanitizedHtml;
+                    })
+                    .catch(error => {
+                        // 显示错误信息
+                        loadingIndicator.classList.add('hidden');
+                        errorContainer.classList.remove('hidden');
+                        errorMessage.textContent = error.message;
+                    });
+            }
+            
+            // 渲染 Markdown 文件
+            renderMarkdownFile();
+        });
+    </script>
+</body>
+</html>
