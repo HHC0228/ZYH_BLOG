@@ -17,13 +17,13 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3B82F6',    // 蓝色
-                        secondary: '#10B981',  // 绿色
-                        accent: '#F59E0B',     // 橙色
-                        dark: '#1F2937',       // 深灰
-                        light: '#F9FAFB',      // 浅灰白
-                        border: '#D1D5DB',     // 中灰
-                    },
+                            primary: '#EF4444',    // 红色
+                            secondary: '#10B981',  // 绿色
+                            accent: '#F59E0B',     // 橙色
+                            dark: '#1F2937',       // 深灰
+                            light: '#F9FAFB',      // 浅灰白
+                            border: '#D1D5DB',     // 中灰
+                        },
                     fontFamily: {
                         sans: ['Inter', 'system-ui', 'sans-serif'],
                     },
@@ -83,6 +83,13 @@
             
             .pixel-card {
                 @apply bg-white border-4 border-dark p-4 shadow-pixel;
+            }
+            
+            /* 像素风格图片渲染 */
+            .pixel-image {
+                image-rendering: pixelated;
+                image-rendering: -moz-crisp-edges;
+                image-rendering: crisp-edges;
             }
             
             .file-item {
@@ -188,7 +195,7 @@
                     <!-- 团队Logo位置 -->
                     <div class="flex items-center">
                         <div id="team-logo" class="w-10 h-10 mr-3 pixel-borders-sm flex items-center justify-center">
-                            <img src="img/zyh-logo.png" alt="ZYH Logo" class="w-full h-full object-contain">
+                            <img src="img/zyh-logo.png" alt="ZYH Logo" class="w-full h-full object-contain pixel-image">
                         </div>
                         <h1 class="text-xl font-bold">ZYH 科技团队</h1>
                     </div>
@@ -207,7 +214,30 @@
         <!-- 内容区域 -->
         <div class="container mx-auto px-4 py-8">
             <!-- 首页内容 -->
-            <section id="home" class="mb-16">
+            <section id="home" class="mb-16 pt-8">
+                <!-- 节日祝福 -->
+                <div class="relative mb-8">
+                    <!-- 灯笼装饰 - 四个角 -->
+                    <div class="absolute top-0 left-0 -translate-x-4 -translate-y-4 z-10 hidden md:block">
+                        <img src="img/lantern.png" alt="灯笼" class="w-12 h-auto animate-bounce-slow pixel-image">
+                    </div>
+                    <div class="absolute top-0 right-0 translate-x-4 -translate-y-4 z-10 hidden md:block">
+                        <img src="img/lantern.png" alt="灯笼" class="w-12 h-auto animate-bounce-slow pixel-image">
+                    </div>
+                    <div class="absolute bottom-0 left-0 -translate-x-4 translate-y-4 z-10 hidden md:block">
+                        <img src="img/lantern.png" alt="灯笼" class="w-12 h-auto animate-bounce-slow pixel-image">
+                    </div>
+                    <div class="absolute bottom-0 right-0 translate-x-4 translate-y-4 z-10 hidden md:block">
+                        <img src="img/lantern.png" alt="灯笼" class="w-12 h-auto animate-bounce-slow pixel-image">
+                    </div>
+                    
+                    <!-- 节日祝福内容 -->
+                    <div class="bg-red-50 border-4 border-primary p-6 text-center pixel-borders">
+                        <h2 class="text-2xl font-bold mb-2 text-primary">ZYH团队祝您马年大吉！</h2>
+                        <p class="text-sm text-gray-600">新年快乐，万事如意，学业有成！</p>
+                    </div>
+                </div>
+                
                 <div class="pixel-card mb-8">
                     <div class="flex flex-col md:flex-row items-center">
                         <div class="md:w-1/2 mb-6 md:mb-0 md:pr-8">
@@ -219,7 +249,7 @@
                             </div>
                         </div>
                         <div class="md:w-1/2">
-                            <div class="bg-blue-50 border-4 border-primary p-6 pixel-borders">
+                            <div class="bg-red-50 border-4 border-primary p-6 pixel-borders">
                                 <h3 class="text-lg mb-4 text-center">我们的项目</h3>
                                 <div class="grid grid-cols-2 gap-4">
                                     <div class="bg-white p-3 pixel-borders-sm text-center">
@@ -400,20 +430,20 @@
                         </div>
                         <div class="md:w-1/2">
                             <div class="grid grid-cols-2 gap-4">
-                                <div class="bg-blue-50 p-4 pixel-borders-sm text-center">
+                                <div class="bg-red-50 p-4 pixel-borders-sm text-center">
                                     <div class="text-3xl font-bold text-primary mb-2">5+</div>
                                     <p class="text-xs">团队成员</p>
                                 </div>
-                                <div class="bg-green-50 p-4 pixel-borders-sm text-center">
-                                    <div class="text-3xl font-bold text-secondary mb-2">5+</div>
+                                <div class="bg-red-100 p-4 pixel-borders-sm text-center">
+                                    <div class="text-3xl font-bold text-primary mb-2">5+</div>
                                     <p class="text-xs">学习项目</p>
                                 </div>
-                                <div class="bg-orange-50 p-4 pixel-borders-sm text-center">
-                                    <div class="text-3xl font-bold text-accent mb-2">8+</div>
+                                <div class="bg-red-50 p-4 pixel-borders-sm text-center">
+                                    <div class="text-3xl font-bold text-primary mb-2">8+</div>
                                     <div class="text-xs">技能分享会</div>
                                 </div>
-                                <div class="bg-purple-50 p-4 pixel-borders-sm text-center">
-                                    <div class="text-3xl font-bold text-purple-600 mb-2">10+</div>
+                                <div class="bg-red-100 p-4 pixel-borders-sm text-center">
+                                    <div class="text-3xl font-bold text-primary mb-2">10+</div>
                                     <p class="text-xs">学习资源</p>
                                 </div>
                             </div>
@@ -471,7 +501,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div>
                         <div class="flex items-center mb-4">
-                            <img src="img/zyh-logo.png" alt="ZYH Logo" class="w-8 h-8 mr-2 pixel-borders-sm">
+                            <img src="img/zyh-logo.png" alt="ZYH Logo" class="w-8 h-8 mr-2 pixel-borders-sm pixel-image">
                             <h3 class="text-lg font-bold">ZYH Team</h3>
                         </div>
                         <p class="text-xs text-gray-600 mb-4">
